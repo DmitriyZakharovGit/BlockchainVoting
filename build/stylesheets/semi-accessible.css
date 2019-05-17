@@ -1,0 +1,231 @@
+@import "./fonts/SanFrancisco/stylesheet.css";
+@import "./fonts/Roboto/stylesheet.css";
+
+.access {
+    border-left: 3px solid #247cff
+}
+
+.access > p {
+    color: hsl(0, 0%, 59%)
+}
+
+.bg-grey {
+    background-color: #fbfbfb
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.center {
+    text-align: center
+}
+
+.c-list-items {
+    padding: 10px
+}
+
+.c-list-items > div > h3 {
+    font-size: 16px
+}
+
+.c-modal-header .close {
+    color: #ffffff;
+}
+
+.c-modal-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem;
+    color: #ffffff;
+    border-top-left-radius: .3rem;
+    border-top-right-radius: .3rem;
+}
+
+.c-error {
+    background-color: #ff3547;
+}
+
+.c-success {
+    background-color: #1035ff;
+}
+
+.c-orange {
+    color: #f15f09
+}
+
+.category {
+    color: #9da4aa;
+    font-family: 'SF UI Text';
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-transform: uppercase
+}
+
+.custom-shadow {
+    box-shadow: 0 2px 6px 0 hsla(202, 100%, 35%, 0.1)
+}
+
+.custom-shadow {
+    box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2)
+}
+
+.left-menu-items {
+    margin-top: 25px
+}
+
+.left-menu-items > li {
+    list-style-type: none;
+    padding-bottom: 5px
+}
+
+.left-menu-items > li > .active {
+    color: #767e8b
+}
+
+.left-menu-items > li > a {
+    color: #adb4bc;
+    font-family: 'SF UI Text';
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    text-transform: uppercase
+}
+
+.page {
+    border: 1px #646464;
+    padding: 10px
+}
+
+.c-tooltip {
+    background-color: #ffffff;
+    min-height: 80px;
+}
+
+.c-tooltip > div > p {
+    font-family: 'SF UI Text';
+    font-size: 13px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.personal-info {
+    min-height: 145px;
+    padding: 20px
+}
+
+.personal-info > h3 {
+    color: #727584;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.personal-info > p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.personal-info > p > label {
+    color: hsl(0, 0%, 43%);
+    margin: 0;
+    display: inline
+}
+
+.full-width {
+    width: 100%
+}
+
+.invisible {
+    display: none;
+}
+
+.scrollbar {
+    background: #fff;
+    float: left;
+    height: 400px;
+    overflow-y: scroll
+}
+
+.scrollbar-danger::-webkit-scrollbar, .scrollbar-default::-webkit-scrollbar, .scrollbar-info::-webkit-scrollbar, .scrollbar-secondary::-webkit-scrollbar, .scrollbar-success::-webkit-scrollbar, .scrollbar-warning::-webkit-scrollbar {
+    background-color: #F5F5F5;
+    width: 12px
+}
+
+.scrollbar-danger::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #ff3547;
+    border-radius: 10px
+}
+
+.scrollbar-danger::-webkit-scrollbar-track, .scrollbar-default::-webkit-scrollbar-track, .scrollbar-info::-webkit-scrollbar-track, .scrollbar-secondary::-webkit-scrollbar-track, .scrollbar-success::-webkit-scrollbar-track, .scrollbar-warning::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F5F5F5;
+    border-radius: 10px
+}
+
+.scrollbar-default::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #2BBBAD;
+    border-radius: 10px
+}
+
+.scrollbar-info::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #33b5e5;
+    border-radius: 10px
+}
+
+.scrollbar-primary::-webkit-scrollbar {
+    width: 8px
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: rgba(66, 133, 244, 0.7);
+    border-radius: 10px
+}
+
+.scrollbar-secondary::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #a6c;
+    border-radius: 10px
+}
+
+.scrollbar-success::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #00C851;
+    border-radius: 10px
+}
+
+.scrollbar-warning::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+    background-color: #F80;
+    border-radius: 10px
+}
+
+.warning {
+    border-left: 3px solid #ce5c5c
+}
+
+.warning > p {
+    color: hsl(351, 10%, 63%)
+}
+
+html, body {
+    font-family: 'SF UI Text';
+    font-size: 14px;
+    height: 100%;
+    min-width: 970px
+}
+
+input::placeholder {
+    font-size: 14px
+}
