@@ -1,4 +1,4 @@
-const ejs = require("ejs");
+const ejs = require('ejs');
 const nodeMailer = require('nodemailer');
 
 const transporter = nodeMailer.createTransport({
@@ -9,14 +9,12 @@ const transporter = nodeMailer.createTransport({
     }
 });
 
-const mailOptions = (data, email) => {
-    return {
+const mailOptions = (data, email) => ({
         from: 'mailexpit@gmail.com',
         to: email,
         subject: 'Приглашение на участие в электронных выборах!',
         html: data
-    }
-};
+    });
 
 let sendMessage = (voters, query) => {
     voters.forEach((voter) => {
@@ -29,19 +27,17 @@ let sendMessage = (voters, query) => {
             dtEnd: query.dtEnd
         };
 
-        ejs.renderFile(__dirname + "/invitation_template.ejs", {
+        ejs.renderFile(__dirname + '/invitation_template.ejs', {
             title: emailInfo.title,
             info: emailInfo.info,
             dtStart: emailInfo.dtStart,
             dtEnd: emailInfo.dtEnd,
             link: `https://localhost:2018/vote/${emailInfo.uuid}`
         }, (err, data) => {
-            transporter.sendMail(mailOptions(data, emailInfo.email), function (error, info) {
-                if (error) console.log(error);
-            })
+            transporter.sendMail(mailOptions(data, emailInfo.email))
         })
     });
 
 };
 
-module.exports = {sendMessage};
+module.exports = { sendMessage };

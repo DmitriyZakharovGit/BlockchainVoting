@@ -1,16 +1,17 @@
-const {add: addUser, getUserByLogin, findUserById} = require('./../models/users');
-const {add: addElection, remove: removeElection, getElection, getElections, getElectionByVoterUuid, isContinues} = require('./../models/elections');
-const {validateAddElection} = require('./validators/create/elections');
-const {validateRegistration, validateAuth, validateEmail, validateLogin, checkBody} = require('./validators/app');
-const {validateBodyPassword, validateBodyCheckPassword, validateBodySurname, validateBodyName} = checkBody;
-const {sendVoteToken, getAddressBalance} = require('./multichain');
+const { add: addUser, getUserByLogin, findUserById } = require('./../models/users');
+const { add: addElection, remove: removeElection, getElection, getElections, getElectionByVoterUuid, isContinues } = require('./../models/elections');
+const { validateAddElection } = require('./validators/create/elections');
+const { validateRegistration, validateAuth, validateEmail, validateLogin, checkBody } = require('./validators/app');
+
+const { validateBodyPassword, validateBodyCheckPassword, validateBodySurname, validateBodyName } = checkBody;
+const { sendVoteToken, getAddressBalance } = require('./multichain');
 
 const registration = async (req, res) => {
     let errors = await validateRegistration(req);
     if (errors.length === 0) {
         await addUser(req.body);
         let user = await getUserByLogin(req.body.login);
-        res.json([{accessToken: user[0]._id}]);
+        res.json([{ accessToken: user[0]._id }]);
     } else {
         res.json(errors);
     }
@@ -20,7 +21,7 @@ const authority = async (req, res) => {
     let errors = await validateAuth(req);
     if (errors.length === 0) {
         let user = await getUserByLogin(req.body.auth_login);
-        res.json([{accessToken: user[0]._id}]);
+        res.json([{ accessToken: user[0]._id }]);
     } else {
         res.json(errors);
     }
@@ -93,36 +94,36 @@ const validation = async (req, res) => {
 
 const getInfo = async (req, res) => {
     switch (req.params.type) {
-        case "user": {
+        case 'user': {
             let user = await findUserById(req.body.id);
             res.json({
-                "name": user[0].name,
-                "surname": user[0].surname,
-                "patronymic": user[0].patronymic,
-                "email": user[0].email,
-                "login": user[0].login,
-                "isChecked": user[0].isChecked
+                'name': user[0].name,
+                'surname': user[0].surname,
+                'patronymic': user[0].patronymic,
+                'email': user[0].email,
+                'login': user[0].login,
+                'isChecked': user[0].isChecked
             });
             break;
         }
-        case "election": {
+        case 'election': {
             let election = await getElection(req.body.id, req.body.organizer);
-            res.status(200).json({"election": election ? election : []});
+            res.status(200).json({ 'election': election ? election : [] });
             break;
         }
-        case "elections": {
+        case 'elections': {
             let elections = await getElections(req.body.id);
-            res.status(200).json({"elections": elections.length === 0 ? [] : elections});
+            res.status(200).json({ 'elections': elections.length === 0 ? [] : elections });
             break;
         }
-        case "electionByUUID": {
+        case 'electionByUUID': {
             let elections = await getElectionByVoterUuid(req.body.uuid);
-            res.status(200).json({"election": elections.length === 0 ? [] : elections});
+            res.status(200).json({ 'election': elections.length === 0 ? [] : elections });
             break;
         }
-        case "balance": {
+        case 'balance': {
             let balance = await getAddressBalance(req.body.address);
-            res.status(200).json({"balance": balance});
+            res.status(200).json({ 'balance': balance });
             break;
         }
     }
@@ -142,12 +143,12 @@ const vote = async (req, res) => {
         let error = await sendVoteToken(voterInfo[0].address, candidateInfo[0].address, req.body.id);
 
         if (error.length > 0) {
-            errors.push({"errors": "Ваш голос уже был зарегистрирован!"})
+            errors.push({ 'errors': 'Ваш голос уже был зарегистрирован!' })
         } else {
-            errors.push({"errors": false});
+            errors.push({ 'errors': false });
         }
     } else {
-        errors.push({"errors": "Срок голосования еще не наступил или уже истёк!"});
+        errors.push({ 'errors': 'Срок голосования еще не наступил или уже истёк!' });
     }
 
     res.json(errors);
@@ -158,7 +159,7 @@ const publicSection = (req, res) => {
 };
 
 const privateSection = (req, res) => {
-    res.render("private.html");
+    res.render('private.html');
 };
 
 module.exports = {

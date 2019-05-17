@@ -1,8 +1,8 @@
 let checkBody = require('./reg/checkBody');
 let checkAccess = require('./reg/checkAccess');
 
-let {validateBodyEmail, validateBodyLogin, validateRegBody, validateAuthBody} = checkBody;
-let {validateRegAccessData, validateAuthAccessData, validateExistEmail, validateExistLogin} = checkAccess;
+let { validateBodyEmail, validateBodyLogin, validateRegBody, validateAuthBody } = checkBody;
+let { validateRegAccessData, validateAuthAccessData, validateExistEmail, validateExistLogin } = checkAccess;
 
 async function validateEmail(req) {
     let checkBodyEmail = validateBodyEmail(req);

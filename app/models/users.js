@@ -22,7 +22,7 @@ async function add(query) {
 
 async function getUserByEmail(email) {
     return await new Promise((resolve, reject) => {
-        db.find({email: email}, (err, user) => {
+        db.find({ email: email }, (err, user) => {
             if (err) reject(err);
             resolve(user)
         });
@@ -31,7 +31,7 @@ async function getUserByEmail(email) {
 
 async function getUserByLogin(login) {
     return await new Promise((resolve, reject) => {
-        db.find({login: login}, (err, user) => {
+        db.find({ login: login }, (err, user) => {
             if (err) reject(err);
             resolve(user)
         });
@@ -40,7 +40,7 @@ async function getUserByLogin(login) {
 
 async function isEmailExist(email) {
     let count = await new Promise((resolve, reject) => {
-        db.count({email: email}, (err, count) => {
+        db.count({ email: email }, (err, count) => {
             if (err) reject(err);
             resolve(count);
         });
@@ -50,7 +50,7 @@ async function isEmailExist(email) {
 
 async function isLoginExist(login) {
     let count = await new Promise((resolve, reject) => {
-        db.count({login: login}, (err, count) => {
+        db.count({ login: login }, (err, count) => {
             if (err) reject(err);
             resolve(count);
         });
@@ -60,11 +60,11 @@ async function isLoginExist(login) {
 
 async function findUserById(id) {
     return await new Promise((resolve, reject) => {
-        db.find({_id: id}, (err, user) => {
+        db.find({ _id: id }, (err, user) => {
             if (err) reject(err);
             resolve(user)
         });
     });
 }
 
-module.exports = {isEmailExist, isLoginExist, getUserByLogin, findUserById, add};
+module.exports = { isEmailExist, isLoginExist, getUserByLogin, findUserById, add };

@@ -1,4 +1,4 @@
-const {findUserById} = require('./../../models/users');
+const { findUserById } = require('./../../models/users');
 
 const isAuthMiddleware = async (req, res, next) => {
     let user = await findUserById(req.universalCookies.get('accessToken'));
@@ -10,4 +10,4 @@ const isNotAuthMiddleware = async (req, res, next) => {
     user.length !== 0 ? res.redirect('/private/') : next();
 };
 
-module.exports = {isAuthMiddleware, isNotAuthMiddleware};
+module.exports = { isAuthMiddleware, isNotAuthMiddleware };

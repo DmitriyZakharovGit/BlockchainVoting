@@ -1,4 +1,4 @@
-let {required} = require('./../errors');
+let { required } = require('./../errors');
 
 function getError(location, param, msg, value) {
     return {
@@ -19,12 +19,12 @@ function validateAddElection(req) {
     let errors = req.validationErrors() ? req.validationErrors() : [];
 
     if (new Date(req.body.dtStart) <= new Date()) {
-        errors.push(getError("body", "dtStart", "Дата начала проведения выборов не может быть в прошлом.", req.body.dtStart))
+        errors.push(getError('body', 'dtStart', 'Дата начала проведения выборов не может быть в прошлом.', req.body.dtStart))
     }
     if (req.body.dtStart >= req.body.dtEnd) {
-        errors.push(getError("body", "dtEnd", "Дата заверщения выборов не может быть раньше или равной дате начала выборов.", req.body.dtEnd))
+        errors.push(getError('body', 'dtEnd', 'Дата заверщения выборов не может быть раньше или равной дате начала выборов.', req.body.dtEnd))
     }
     return errors;
 }
 
-module.exports = {validateAddElection};
+module.exports = { validateAddElection };

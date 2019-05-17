@@ -1,21 +1,18 @@
-let multichain = require("multichain-node")({
+let multichain = require('multichain-node')({
     port: 9266,
     host: '134.0.113.150',
-    user: "multichainrpc",
-    pass: "4Nn5taKxRHNZrxZQNT8af3akfFcDgTmcgExhLCBrYJHi",
+    user: 'multichainrpc',
+    pass: '4Nn5taKxRHNZrxZQNT8af3akfFcDgTmcgExhLCBrYJHi',
 });
 
-let generateNewAddress = async () => {
-    return await new Promise((resolve) => {
+let generateNewAddress = async () => await new Promise((resolve) => {
         multichain.getNewAddress((err, address) => {
             if (err) resolve(err);
             resolve(address);
         });
     });
-};
 
-let createVoteToken = async data => {
-    return await new Promise((resolve) => {
+let createVoteToken = async data => await new Promise((resolve) => {
         multichain.issue({
                 address: data.address,
                 asset: data.asset,
@@ -30,18 +27,15 @@ let createVoteToken = async data => {
             }
         );
     });
-};
 
 let createWallet = async (transaction) => {
-    multichain.sendWithMetadataFrom(transaction, (err, tx) => {
-        // TODO Kibana Errors
+    multichain.sendWithMetadataFrom(transaction, (err) => {
         if (err) console.log(err);
     });
 };
 
-let getAddressBalance = async (address) => {
-    return await new Promise((resolve) => {
-        multichain.getAddressBalances(({address: address}), (err, balance) => {
+let getAddressBalance = async (address) => await new Promise((resolve) => {
+        multichain.getAddressBalances(({ address: address }), (err, balance) => {
             if (err) resolve(err);
             if (typeof balance !== 'undefined' && balance.length > 0) {
                 resolve(balance[0].qty);
@@ -50,7 +44,6 @@ let getAddressBalance = async (address) => {
             }
         })
     });
-};
 
 let createVotersWallet = async (assetInfo, uuidArray) => {
     let votersAddress = [];
@@ -59,7 +52,7 @@ let createVotersWallet = async (assetInfo, uuidArray) => {
         await createWallet({
             from: assetInfo.address,
             to: newAddress,
-            amount: {[assetInfo.asset]: 1},
+            amount: { [assetInfo.asset]: 1 },
             data: new Buffer(uuid, 'utf8').toString('hex')
         });
         return newAddress;
@@ -77,7 +70,7 @@ let createCandidatesWallet = async (assetInfo, uuidArray) => {
             await createWallet({
                 from: assetInfo.address,
                 to: newAddress,
-                amount: {[assetInfo.asset]: 0},
+                amount: { [assetInfo.asset]: 0 },
                 data: new Buffer(uuid, 'utf8').toString('hex')
             });
             return newAddress;
@@ -100,8 +93,8 @@ let create = async (query) => {
 
     if (resultCreationToken.length === 0) {
         return {
-            "addressVoters": await createVotersWallet(assetInfo, query.votersUuids),
-            "addressCandidates": await createCandidatesWallet(assetInfo, query.candidatesUuids)
+            'addressVoters': await createVotersWallet(assetInfo, query.votersUuids),
+            'addressCandidates': await createCandidatesWallet(assetInfo, query.candidatesUuids)
         }
     } else {
         //TODO Errors to Kibana
@@ -109,8 +102,7 @@ let create = async (query) => {
     }
 };
 
-let sendVoteToken = async (voterAddress, candidateAddress, asset) => {
-    return await new Promise((resolve) => {
+let sendVoteToken = async (voterAddress, candidateAddress, asset) => await new Promise((resolve) => {
         multichain.sendAssetFrom({
             from: voterAddress,
             to: candidateAddress,
@@ -121,6 +113,5 @@ let sendVoteToken = async (voterAddress, candidateAddress, asset) => {
             resolve([]);
         });
     });
-};
 
-module.exports = {create, sendVoteToken, getAddressBalance};
+module.exports = { create, sendVoteToken, getAddressBalance };

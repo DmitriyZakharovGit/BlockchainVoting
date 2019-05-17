@@ -13,8 +13,6 @@ import {
     YAxis
 } from 'recharts';
 
-// TODO Сократить наименование X линии до 5 символов
-
 export default class Chart extends React.Component {
     constructor(props) {
         super(props);
